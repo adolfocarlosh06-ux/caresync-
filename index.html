@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+
+    <!-- ── PWA: Ícono y Manifest ──────────────────────────── -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.json" />
+
+    <!-- ── PWA: iOS Safari ───────────────────────────────── -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="CareSync" />
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+
+    <!-- ── PWA: Viewport y tema ──────────────────────────── -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#0D9488" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- ── SEO y descripción ─────────────────────────────── -->
+    <title>CareSync — Asistente Médico Familiar</title>
+    <meta name="description" content="Sistema de gestión médica para familias con niños con necesidades especiales. Medicamentos, citas, exámenes y más." />
+    <meta name="keywords" content="salud, niños, medicamentos, citas médicas, discapacidad, familia" />
+    <meta name="author" content="CareSync" />
+
+    <!-- ── Open Graph (para compartir en WhatsApp/redes) ─── -->
+    <meta property="og:title"       content="CareSync — Asistente Médico Familiar" />
+    <meta property="og:description" content="Gestiona medicamentos, citas y exámenes médicos de tus hijos con necesidades especiales." />
+    <meta property="og:type"        content="website" />
+    <meta property="og:image"       content="/icons/icon-512x512.png" />
+
+    <!-- ── Fuente Inter ──────────────────────────────────── -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <!-- ── Splash screen color ───────────────────────────── -->
+    <style>
+      body { background-color: #E0F7F4; }
+      #root { min-height: 100vh; }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <!-- ── Registro del Service Worker ───────────────────── -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => {
+              console.log('[CareSync] Service Worker registrado:', reg.scope);
+            })
+            .catch(err => {
+              console.log('[CareSync] Service Worker error:', err);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
